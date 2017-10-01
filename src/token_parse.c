@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:39:21 by jkrause           #+#    #+#             */
-/*   Updated: 2017/09/30 11:05:30 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 01:10:55 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ int						*iterate_token(int fd, int x, int y)
 	char				*line;
 
 	line = 0;
-	curx = 0;
+	curx = -1;
 	cury = -1;
 	arrindex = 0;
-	tokenoff = (int*)ft_memalloc(sizeof(int) * ((x * y)));
-	while (get_next_line(fd, &line) == 1)
+	tokenoff = (int*)ft_memalloc(sizeof(int*) * 2 * ((x * y)));
+	while (++curx < x && get_next_line(fd, &line) == 1)
 	{
+		dprintf(3, "ITL: %s\n", line);
 		cury = -1;
 		while (++cury < y)
 			if (line[cury] == '*')
@@ -34,7 +35,6 @@ int						*iterate_token(int fd, int x, int y)
 				tokenoff[arrindex++] = curx;
 				tokenoff[arrindex++] = cury;
 			}
-		curx++;
 		free(line);
 	}
 	tokenoff[arrindex++] = INT_MIN;
@@ -46,7 +46,7 @@ void					*token_parse(int fd, char *line)
 	int					x;
 	int					y;
 
-	ft_printf("LINE: \"%s\"\n", line);
+	dprintf(3, "LINE: \"%s\"\n", line);
 	if (ft_strstr(line, "Piece "))
 	{
 		x = ft_atoi(line + 6);

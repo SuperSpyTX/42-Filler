@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:43:23 by jkrause           #+#    #+#             */
-/*   Updated: 2017/09/30 11:21:03 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 00:57:37 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ int						parse_line(char *line, int curx, t_game *game)
 	cury = -1;
 	while (++cury < game->map->columns)
 	{
-		if (line[cury] != 'o' && line[cury] != 'O' && line[cury] != 'x'
-				&& line[cury] != 'X' && line[cury] != '.')
+		if (line[cury] != 'O' && line[cury] != 'X' && line[cury] != '.')
 			return (0);
-		if (line[cury] == game->opponent.piece_last)
+		if (game->opponent_last_piece.x == -1
+				&& game->map->grid[curx][cury] == '.'
+				&& line[cury] == game->opponent.piece)
 		{
-			game->opponent_last_piece.x = curx;
-			game->opponent_last_piece.y = cury;
+				game->opponent_last_piece.x = curx;
+				game->opponent_last_piece.y = cury;
 		}
 		else if (game->first_round && line[cury] == game->mine.piece)
 		{
@@ -80,7 +81,8 @@ t_grid					*grid_fill(int fd, t_game *game)
 	grid = game->map;
 	line = 0;
 	curx = 0;
-	while (get_next_line(fd, &line) == 1)
+	int status = 0;
+	while ((status = get_next_line(fd, &line)))
 	{
 		if (!parse_line(line + 4, curx++, game))
 			return (0);

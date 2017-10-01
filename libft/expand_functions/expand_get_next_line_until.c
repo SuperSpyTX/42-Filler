@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 12:02:04 by jkrause           #+#    #+#             */
-/*   Updated: 2017/09/28 15:40:39 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 01:13:25 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ void					*expand_get_next_line_until(int fd, void *(*f)(int,char*))
 
 	result = 0;
 	line = 0;
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(fd, &line))
 	{
 		result = f(fd, line);
+		dprintf(3, "EGNLU: %s\n", line);
 		free(line);
 		if (result)
 			return (result);

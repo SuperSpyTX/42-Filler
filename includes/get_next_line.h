@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 01:54:57 by jkrause           #+#    #+#             */
-/*   Updated: 2017/09/25 16:08:20 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 01:19:09 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFF_SIZE
-#  define BUFF_SIZE 100
+#  define BUFF_SIZE 32
 # endif
 
 # ifndef DESCRIPTOR_SIZE

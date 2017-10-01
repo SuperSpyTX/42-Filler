@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 22:38:22 by jkrause           #+#    #+#             */
-/*   Updated: 2017/09/29 21:20:00 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 02:50:41 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int						msize(int n)
 
 t_location				location_mod(t_location l, int value)
 {
-	l.x += value;
 	l.y += value;
 	return (l);
 }
@@ -59,8 +58,7 @@ t_location				scan_map_forward(t_grid *grid,
 	{
 		while (curloc.y < grid->columns)
 		{
-			if (grid->grid[curloc.x][curloc.y] == match.piece ||
-					grid->grid[curloc.x][curloc.y] == match.piece_last)
+			if (grid->grid[curloc.x][curloc.y] == match.piece)
 				return (curloc);
 			curloc.y++;
 		}
@@ -76,16 +74,15 @@ t_location				scan_map_backward(t_grid *grid,
 	t_location			curloc;
 
 	curloc = loc;
-	while (curloc.x > 0)
+	while (curloc.x >= 0)
 	{
-		while (curloc.y > 0)
+		while (curloc.y >= 0)
 		{
-			if (grid->grid[curloc.x][curloc.y] == match.piece ||
-					grid->grid[curloc.x][curloc.y] == match.piece_last)
+			if (grid->grid[curloc.x][curloc.y] == match.piece)
 				return (curloc);
 			curloc.y--;
 		}
-		curloc.y = grid->columns;
+		curloc.y = grid->columns - 1;
 		curloc.x--;
 	}
 	return (curloc);
