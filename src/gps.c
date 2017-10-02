@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:43:23 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 00:57:37 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 19:51:44 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int						parse_line(char *line, int curx, t_game *game)
 				&& game->map->grid[curx][cury] == '.'
 				&& line[cury] == game->opponent.piece)
 		{
-				game->opponent_last_piece.x = curx;
-				game->opponent_last_piece.y = cury;
+			game->opponent_last_piece.x = curx;
+			game->opponent_last_piece.y = cury;
 		}
 		else if (game->first_round && line[cury] == game->mine.piece)
 		{
@@ -81,8 +81,7 @@ t_grid					*grid_fill(int fd, t_game *game)
 	grid = game->map;
 	line = 0;
 	curx = 0;
-	int status = 0;
-	while ((status = get_next_line(fd, &line)))
+	while (get_next_line(fd, &line))
 	{
 		if (!parse_line(line + 4, curx++, game))
 			return (0);

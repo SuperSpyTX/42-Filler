@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/07 01:54:43 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 03:19:46 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:12:27 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int							malloc_or_use(int fd, t_descriptor *desc, int reset)
 	if (desc->current == 0 || desc->end == 0
 			|| (desc->current >= desc->end))
 	{
-		if (desc->full_read)
+		if (desc->full_read && fd != 0)
 			return (desc->full_read = 0);
 		if (desc->current != 0 && desc->end != 0)
 			free(desc->start);

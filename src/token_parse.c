@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 23:39:21 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 01:10:55 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:07:34 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void					*token_parse(int fd, char *line)
 	int					x;
 	int					y;
 
-	dprintf(3, "LINE: \"%s\"\n", line);
+	dprintf(3, "TOKLINE: \"%s\"\n", line);
 	if (ft_strstr(line, "Piece "))
 	{
 		x = ft_atoi(line + 6);

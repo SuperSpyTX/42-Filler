@@ -41,7 +41,6 @@ libft/standard_functions/ft_strcmp.c \
 libft/standard_functions/ft_strlcat.c \
 libft/standard_functions/ft_memcpy.c \
 libft/standard_functions/ft_no.c \
-libft/standard_functions/ft_strtol.c \
 libft/standard_functions/ft_ltostr_base.c \
 libft/standard_functions/ft_is_whitespace.c \
 libft/standard_functions/ft_memmove.c \

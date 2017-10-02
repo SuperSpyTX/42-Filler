@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 21:10:52 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 00:48:38 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 19:40:54 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ t_grid					*grid_new(int x, int y);
 t_game					*game_new(int fd);
 int						game_loop(t_game *game);
 int						get_distance(t_location a, t_location b);
-t_location				location_mod(t_location l, int value);
-t_location				scan_map_forward(t_grid *grid, t_location loc, t_piece match);
-t_location				scan_map_backward(t_grid *grid, t_location loc, t_piece match);
+int						get_min_y(t_game *game, int c, int y);
+t_location				scan_map_forward(t_grid *grid,
+							t_location loc, t_piece match);
+t_location				scan_map_backward(t_grid *grid,
+							t_location loc, t_piece match);
 
-t_foundpiece			*select_algorithm(t_game *game, t_location loc, int value);
+t_foundpiece			*select_algorithm(t_game *game, t_location loc);
 
 /*
 ** Parsers.

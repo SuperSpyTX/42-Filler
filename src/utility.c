@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 22:38:22 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 02:50:41 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 20:58:02 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ int						msize(int n)
 	return (c + 1);
 }
 
-t_location				location_mod(t_location l, int value)
+int						get_min_y(t_game *game, int c, int y)
 {
-	l.y += value;
-	return (l);
+	if (game->token[1] > c)
+		return (-game->token[1]);
+	(void)y;
+	return (0);
 }
 
 int						get_distance(t_location a, t_location b)

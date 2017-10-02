@@ -6,14 +6,15 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 12:02:04 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 01:13:25 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/01 20:47:55 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "expand.h"
 #include "get_next_line.h"
 
-void					*expand_get_next_line_until(int fd, void *(*f)(int,char*))
+void					*expand_get_next_line_until(int fd,
+							void *(*f)(int, char*))
 {
 	char					*line;
 	void					*result;
@@ -23,7 +24,6 @@ void					*expand_get_next_line_until(int fd, void *(*f)(int,char*))
 	while (get_next_line(fd, &line))
 	{
 		result = f(fd, line);
-		dprintf(3, "EGNLU: %s\n", line);
 		free(line);
 		if (result)
 			return (result);
