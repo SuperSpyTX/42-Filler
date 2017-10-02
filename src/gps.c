@@ -84,7 +84,10 @@ t_grid					*grid_fill(int fd, t_game *game)
 	while (get_next_line(fd, &line))
 	{
 		if (!parse_line(line + 4, curx++, game))
+		{
+			free(line);
 			return (0);
+		}
 		free(line);
 		if (curx >= game->map->rows)
 			break ;
