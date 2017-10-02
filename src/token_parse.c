@@ -27,7 +27,6 @@ int						*iterate_token(int fd, int x, int y)
 	tokenoff = (int*)ft_memalloc(sizeof(int*) * 2 * ((x * y)));
 	while (++curx < x && get_next_line(fd, &line) == 1)
 	{
-		dprintf(3, "ITL: %s\n", line);
 		cury = -1;
 		while (++cury < y)
 			if (line[cury] == '*')
@@ -46,7 +45,6 @@ void					*token_parse(int fd, char *line)
 	int					x;
 	int					y;
 
-	dprintf(3, "TOKLINE: \"%s\"\n", line);
 	if (ft_strstr(line, "Piece "))
 	{
 		x = ft_atoi(line + 6);
