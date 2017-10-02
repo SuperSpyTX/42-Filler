@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 19:48:19 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 21:28:56 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/10/02 10:22:44 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,18 +109,8 @@ t_foundpiece				*select_algorithm(t_game *game, t_location loc)
 {
 	t_foundpiece			*found;
 
-	found = 0;
-	if (game->mine.piece == 'g')
-	{
+	found = get_effective_piece(game, loc, -1);
+	if (!found)
 		found = get_effective_piece(game, loc, 1);
-		if (!found)
-			found = get_effective_piece(game, loc, -1);
-	}
-	else
-	{
-		found = get_effective_piece(game, loc, -1);
-		if (!found)
-			found = get_effective_piece(game, loc, 1);
-	}
 	return (found);
 }
