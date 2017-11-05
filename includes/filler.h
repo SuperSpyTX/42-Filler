@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 21:10:52 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 19:40:54 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/11/05 06:16:19 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct			s_game
 	int					*token;
 	int					first_round;
 	int					game_won;
+	int					opponent_num_pieces;
+	int					num_pieces;
 	t_piece				opponent;
 	t_piece				mine;
 	t_location			opponent_last_piece;
@@ -74,8 +76,9 @@ t_location				scan_map_forward(t_grid *grid,
 							t_location loc, t_piece match);
 t_location				scan_map_backward(t_grid *grid,
 							t_location loc, t_piece match);
-
 t_foundpiece			*select_algorithm(t_game *game, t_location loc);
+void					visualizer_init(void);
+void					visualize(t_game *game);
 
 /*
 ** Parsers.

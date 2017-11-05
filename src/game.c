@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 22:20:41 by jkrause           #+#    #+#             */
-/*   Updated: 2017/09/29 21:43:19 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/11/05 06:17:33 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ t_game					*game_new(int fd)
 	game->opponent = (pnum == 1 ? create_piece(2) : create_piece(1));
 	game->map = grid;
 	game->first_round = 1;
+	game->num_pieces = 0;
 	return (game);
 }

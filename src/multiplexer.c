@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 21:35:36 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 21:29:53 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/11/05 06:17:15 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int							game_loop(t_game *game)
 	if (!match)
 		return (0);
 	ft_printf("%d %d\n", match->loc.x, match->loc.y);
+	game->num_pieces++;
 	free(match);
 	return (1);
 }

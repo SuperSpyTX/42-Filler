@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:43:23 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/01 19:51:44 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/11/05 06:43:57 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ t_grid					*grid_new(int x, int y)
 	return (new);
 }
 
+int						last_place_or_first(t_game *game, int curx, int cury)
+{
+	if (game->opponent_last_piece.x != -1 && game->mine.piece != 'X')
+		return (0);
+	return (game->map->grid[curx][cury] == '.');
+}
+
 int						parse_line(char *line, int curx, t_game *game)
 {
 	int					cury;
@@ -55,9 +62,7 @@ int						parse_line(char *line, int curx, t_game *game)
 	{
 		if (line[cury] != 'O' && line[cury] != 'X' && line[cury] != '.')
 			return (0);
-		if (game->opponent_last_piece.x == -1
-				&& game->map->grid[curx][cury] == '.'
-				&& line[cury] == game->opponent.piece)
+		if (last_place_or_first(game, curx, cury) && line[cury] == game->opponent.piece)
 		{
 			game->opponent_last_piece.x = curx;
 			game->opponent_last_piece.y = cury;
