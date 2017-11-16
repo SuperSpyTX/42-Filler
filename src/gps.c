@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:43:23 by jkrause           #+#    #+#             */
-/*   Updated: 2017/11/05 06:43:57 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/11/16 14:47:50 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int						parse_line(char *line, int curx, t_game *game)
 	{
 		if (line[cury] != 'O' && line[cury] != 'X' && line[cury] != '.')
 			return (0);
-		if (last_place_or_first(game, curx, cury) && line[cury] == game->opponent.piece)
+		if (last_place_or_first(game, curx, cury)
+				&& line[cury] == game->opponent.piece)
 		{
 			game->opponent_last_piece.x = curx;
 			game->opponent_last_piece.y = cury;
