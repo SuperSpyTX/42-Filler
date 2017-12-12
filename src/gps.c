@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 15:43:23 by jkrause           #+#    #+#             */
-/*   Updated: 2017/11/16 14:47:50 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/12/11 16:52:02 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_grid					*grid_new(int x, int y)
 
 int						last_place_or_first(t_game *game, int curx, int cury)
 {
-	if (game->opponent_last_piece.x != -1 && game->mine.piece != 'X')
+	if (game->opponent_last_piece.x != -1)
 		return (0);
 	return (game->map->grid[curx][cury] == '.');
 }

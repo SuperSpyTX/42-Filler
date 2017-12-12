@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 04:14:09 by jkrause           #+#    #+#             */
-/*   Updated: 2017/11/05 22:22:36 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/11/19 21:33:29 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void					visualize(t_game *game)
 
 	row = -1;
 	column = -1;
-	visualizer_reinit();
 	while (++row < game->map->rows)
 	{
 		column = -1;
@@ -60,4 +59,5 @@ void					visualizer_init(void)
 	start_color();
 	noecho();
 	curs_set(0);
+	visualizer_reinit();
 }

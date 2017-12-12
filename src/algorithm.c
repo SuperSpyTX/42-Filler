@@ -6,7 +6,7 @@
 /*   By: jkrause <jkrause@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 19:48:19 by jkrause           #+#    #+#             */
-/*   Updated: 2017/10/02 10:22:44 by jkrause          ###   ########.fr       */
+/*   Updated: 2017/12/11 16:58:17 by jkrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,21 @@
 ** I'm calling it 'Strobe'
 */
 
-int							is_gud(t_game *game, int x, int y)
+int							is_gud(t_game *game, int x, int y, int idx)
 {
-	if (x < 0 || x >= game->map->rows || y < 0 || y >= game->map->columns)
+	int						nx;
+	int						ny;
+
+	nx = x;
+	ny = (y < 0 && x > 0 ? (game->map->columns) + y : y);
+	if (nx >= game->map->rows || ny >= game->map->columns || nx < 0)
 		return (0);
-	else if (game->map->grid[x][y] == game->opponent.piece)
+	else if (game->map->grid[nx][ny] == game->opponent.piece)
 		return (0);
-	else if (game->map->grid[x][y] == game->mine.piece
-			|| game->map->grid[x][y] == game->mine.piece_last)
+	else if (game->token[idx + 1] + ny < 0)
+		return (0);
+	else if (game->map->grid[nx][ny] == game->mine.piece
+			|| game->map->grid[nx][ny] == game->mine.piece_last)
 		return (2);
 	return (1);
 }
@@ -32,7 +39,7 @@ int							is_gud(t_game *game, int x, int y)
 t_foundpiece				*check_piece(t_game *game, int x, int y)
 {
 	t_foundpiece			*piece;
-	int						idx;
+	int						i;
 	int						res;
 
 	piece = (t_foundpiece*)ft_memalloc(sizeof(t_foundpiece));
@@ -40,10 +47,10 @@ t_foundpiece				*check_piece(t_game *game, int x, int y)
 		return (0);
 	piece->loc.x = x;
 	piece->loc.y = y;
-	idx = 0;
-	while (game->token[idx] != INT_MIN)
+	i = 0;
+	while (game->token[i] != INT_MIN)
 	{
-		res = is_gud(game, (x + game->token[idx]), (y + game->token[idx + 1]));
+		res = is_gud(game, (x + game->token[i]), (y + game->token[i + 1]), i);
 		if (res == 0)
 		{
 			free(piece);
@@ -51,7 +58,7 @@ t_foundpiece				*check_piece(t_game *game, int x, int y)
 		}
 		else if (res == 2)
 			piece->intersects += 1;
-		idx += 2;
+		i += 2;
 	}
 	if (piece->intersects != 1)
 		ft_memdel((void**)&piece);
